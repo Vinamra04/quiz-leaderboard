@@ -76,6 +76,6 @@ The app runs, completes all 10 polls (~50 seconds), prints the leaderboard, subm
 Bob -> 295
 Alice -> 280
 Charlie -> 260
-Result: {submittedTotal=835, ...}
+Result: {regNo=2024CS101, totalPollsMade=3114, submittedTotal=835, attemptCount=251}
 Submitted.
 ```
