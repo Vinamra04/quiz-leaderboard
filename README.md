@@ -5,7 +5,7 @@ This project was built as part of the **Bajaj Finserv Health Java Qualifier Assi
 
 ## Problem Statement
 
-The assignment simulates a real-world backend integration scenario. A quiz validator API exposes participant scores across multiple rounds. The API must be polled exactly 10 times (poll index 0-9), with a mandatory 5-second delay between each request. The catch — the same event data can appear across multiple polls (duplicates), and if not handled correctly, the final scores will be wrong.
+The assignment simulates a real-world backend integration scenario. A quiz validator API exposes participant scores across multiple rounds. The API must be polled exactly 10 times (poll index 0-9), with a mandatory 5-second delay between each request. The catch - the same event data can appear across multiple polls (duplicates), and if not handled correctly, the final scores will be wrong.
 
 The objective was to:
 - Poll the API 10 times
@@ -16,7 +16,7 @@ The objective was to:
 
 ## My Approach
 
-The core challenge here isn't just making API calls — it's idempotent event processing, which is a common pattern in distributed systems. The same message arriving twice should not be counted twice.
+The core challenge here isn't just making API calls - it's idempotent event processing, which is a common pattern in distributed systems. The same message arriving twice should not be counted twice.
 
 I used a `HashSet` to track seen events. Before adding a score, I check if the combination of `roundId + participant` has already been processed. If it has, I skip it. This ensures each round's score for each participant is counted exactly once regardless of how many times the API returns it.
 
@@ -56,7 +56,7 @@ quiz-leaderboard/
 
 1. `QuizRunner` implements `CommandLineRunner` and kicks off the process when the app starts
 2. `QuizService.buildLeaderboard()` loops from poll 0 to 9, calling the GET endpoint each time with a 5 second sleep between requests
-3. Every event is checked against a `HashSet` — duplicates are silently ignored
+3. Every event is checked against a `HashSet` - duplicates are silently ignored
 4. Scores are accumulated in a `HashMap` and the final leaderboard is sorted in descending order
 5. `QuizService.submitLeaderboard()` POSTs the result once to the submit endpoint
 
